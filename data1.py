@@ -9,6 +9,7 @@ from pandas import DataFrame, Series
 import pandas as pd
 import numpy as np
 import json
+#8-15-2019修改
 path = 'b:/python3/Data/example.txt'
 records = [json.loads(line) for line in open(path)]
 frame = DataFrame(records)
