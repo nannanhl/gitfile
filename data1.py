@@ -20,3 +20,14 @@ tz_counts[:10]
 
 import matplotlib.pyplot as plt
 tz_counts[:10].plot(kind = 'barh', rot = 0)
+"""
+frame['a'][1]
+frame['a'][50]
+frame['a'][51]
+"""
+
+results = Series([x.split()[0] for x in frame.a.dropna()])
+print(results[:5])
+
+
+
