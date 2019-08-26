@@ -20,14 +20,38 @@ tz_counts[:10]
 
 import matplotlib.pyplot as plt
 tz_counts[:10].plot(kind = 'barh', rot = 0)
-"""
-frame['a'][1]
-frame['a'][50]
-frame['a'][51]
-"""
+
 
 results = Series([x.split()[0] for x in frame.a.dropna()])
 print(results[:5])
+print(results.value_counts()[:8])
+cframe = frame[frame.a.notnull()]
+cframe['a']
+
+operating_system = np.where(cframe['a'].str.contains('Windows'),'Windows','Not Windows')
+by_tz_os = cframe.groupby(['tz', operating_system])
+
+agg_counts=by_tz_os.size().unstack().fillna(0)
+agg_counts[:10]
+
+indexer=agg_counts.sum(1).argsort()
+count_subset=agg_counts.take(indexer)[-10:]
+count_subset
+count_subset.plot(kind='barh',stacked=True)
+count_subset.plot(kind='barh',stacked=False)
+
+
+normed_subset=count_subset.div(count_subset.sum(1),axis=0)  
+normed_subset.plot(kind='barh',stacked=True)
+
+
+
+
+
+
+
+
+
 
 
 
